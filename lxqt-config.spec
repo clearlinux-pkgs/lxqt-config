@@ -6,11 +6,11 @@
 #
 Name     : lxqt-config
 Version  : 0.14.1
-Release  : 2
+Release  : 3
 URL      : https://downloads.lxqt.org/downloads/lxqt-config/0.14.1/lxqt-config-0.14.1.tar.xz
 Source0  : https://downloads.lxqt.org/downloads/lxqt-config/0.14.1/lxqt-config-0.14.1.tar.xz
-Source99 : https://downloads.lxqt.org/downloads/lxqt-config/0.14.1/lxqt-config-0.14.1.tar.xz.asc
-Summary  : LXQt system configuration.
+Source1  : https://downloads.lxqt.org/downloads/lxqt-config/0.14.1/lxqt-config-0.14.1.tar.xz.asc
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: lxqt-config-bin = %{version}-%{release}
@@ -31,10 +31,13 @@ BuildRequires : pkgconfig(xi)
 BuildRequires : pkgconfig(xorg-libinput)
 BuildRequires : qttools-dev
 BuildRequires : zlib-dev
+Patch1: 0001-Fix-building-with-Qt-5.14.patch
 
 %description
-# brightness-settings
-This tool changes brightness and gamma of your screen. It is a X11 tool. LibKScreen can not change brightness or gamma yet.
+# lxqt-config
+## Overview
+This repository is providing several tools involved in the configuration of both
+LXQt and the underlying operating system.
 
 %package bin
 Summary: bin components for the lxqt-config package.
@@ -82,25 +85,32 @@ man components for the lxqt-config package.
 
 %prep
 %setup -q -n lxqt-config-0.14.1
+cd %{_builddir}/lxqt-config-0.14.1
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1551299483
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1579630405
 mkdir -p clr-build
 pushd clr-build
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1551299483
+export SOURCE_DATE_EPOCH=1579630405
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lxqt-config
-cp LICENSE %{buildroot}/usr/share/package-licenses/lxqt-config/LICENSE
-cp lxqt-config-monitor/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-config/lxqt-config-monitor_LICENSE
+cp %{_builddir}/lxqt-config-0.14.1/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-config/7fab4cd4eb7f499d60fe183607f046484acd6e2d
+cp %{_builddir}/lxqt-config-0.14.1/lxqt-config-monitor/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-config/f0aaeb9183bca4511d21c13a39052e24f3774645
 pushd clr-build
 %make_install
 popd
@@ -384,8 +394,8 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/lxqt-config/LICENSE
-/usr/share/package-licenses/lxqt-config/lxqt-config-monitor_LICENSE
+/usr/share/package-licenses/lxqt-config/7fab4cd4eb7f499d60fe183607f046484acd6e2d
+/usr/share/package-licenses/lxqt-config/f0aaeb9183bca4511d21c13a39052e24f3774645
 
 %files man
 %defattr(0644,root,root,0755)

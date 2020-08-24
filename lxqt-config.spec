@@ -6,10 +6,10 @@
 #
 Name     : lxqt-config
 Version  : 0.14.1
-Release  : 3
-URL      : https://downloads.lxqt.org/downloads/lxqt-config/0.14.1/lxqt-config-0.14.1.tar.xz
-Source0  : https://downloads.lxqt.org/downloads/lxqt-config/0.14.1/lxqt-config-0.14.1.tar.xz
-Source1  : https://downloads.lxqt.org/downloads/lxqt-config/0.14.1/lxqt-config-0.14.1.tar.xz.asc
+Release  : 4
+URL      : https://github.com/lxqt/lxqt-config/releases/download/0.14.1/lxqt-config-0.14.1.tar.xz
+Source0  : https://github.com/lxqt/lxqt-config/releases/download/0.14.1/lxqt-config-0.14.1.tar.xz
+Source1  : https://github.com/lxqt/lxqt-config/releases/download/0.14.1/lxqt-config-0.14.1.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -23,13 +23,17 @@ BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules pkgconfig(xcb) xcb-util-cursor-dev xcb-util-image-dev xcb-util-keysyms-dev xcb-util-renderutil-dev xcb-util-wm-dev xcb-util-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
 BuildRequires : libkscreen-dev
+BuildRequires : liblxqt-data
 BuildRequires : liblxqt-dev
 BuildRequires : lxqt-build-tools
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(libudev)
 BuildRequires : pkgconfig(xi)
 BuildRequires : pkgconfig(xorg-libinput)
+BuildRequires : qtbase-dev
+BuildRequires : qtsvg-dev
 BuildRequires : qttools-dev
+BuildRequires : qtx11extras-dev
 BuildRequires : zlib-dev
 Patch1: 0001-Fix-building-with-Qt-5.14.patch
 
@@ -93,20 +97,20 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1579630405
+export SOURCE_DATE_EPOCH=1598295009
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1579630405
+export SOURCE_DATE_EPOCH=1598295009
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lxqt-config
 cp %{_builddir}/lxqt-config-0.14.1/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-config/7fab4cd4eb7f499d60fe183607f046484acd6e2d

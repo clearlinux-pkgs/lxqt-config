@@ -1,4 +1,3 @@
-0.14.1
-libkscreen-dev
-liblxqt-dev
+0.15.0
+libqtxdg-dev
 lxqt-build-tools

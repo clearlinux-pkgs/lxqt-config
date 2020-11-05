@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBE793007AD22DF7E (tsujan2000@gmail.com)
 #
 Name     : lxqt-config
-Version  : 0.15.0
-Release  : 5
-URL      : https://github.com/lxqt/lxqt-config/releases/download/0.15.0/lxqt-config-0.15.0.tar.xz
-Source0  : https://github.com/lxqt/lxqt-config/releases/download/0.15.0/lxqt-config-0.15.0.tar.xz
-Source1  : https://github.com/lxqt/lxqt-config/releases/download/0.15.0/lxqt-config-0.15.0.tar.xz.asc
+Version  : 0.16.0
+Release  : 6
+URL      : https://github.com/lxqt/lxqt-config/releases/download/0.16.0/lxqt-config-0.16.0.tar.xz
+Source0  : https://github.com/lxqt/lxqt-config/releases/download/0.16.0/lxqt-config-0.16.0.tar.xz
+Source1  : https://github.com/lxqt/lxqt-config/releases/download/0.16.0/lxqt-config-0.16.0.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -25,7 +25,6 @@ BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev lib
 BuildRequires : libkscreen-dev
 BuildRequires : liblxqt-data
 BuildRequires : liblxqt-dev
-BuildRequires : libqtxdg-dev
 BuildRequires : lxqt-build-tools
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(libudev)
@@ -88,15 +87,15 @@ man components for the lxqt-config package.
 
 
 %prep
-%setup -q -n lxqt-config-0.15.0
-cd %{_builddir}/lxqt-config-0.15.0
+%setup -q -n lxqt-config-0.16.0
+cd %{_builddir}/lxqt-config-0.16.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1598905953
+export SOURCE_DATE_EPOCH=1604541266
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -109,11 +108,11 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1598905953
+export SOURCE_DATE_EPOCH=1604541266
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lxqt-config
-cp %{_builddir}/lxqt-config-0.15.0/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-config/7fab4cd4eb7f499d60fe183607f046484acd6e2d
-cp %{_builddir}/lxqt-config-0.15.0/lxqt-config-monitor/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-config/f0aaeb9183bca4511d21c13a39052e24f3774645
+cp %{_builddir}/lxqt-config-0.16.0/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-config/7fab4cd4eb7f499d60fe183607f046484acd6e2d
+cp %{_builddir}/lxqt-config-0.16.0/lxqt-config-monitor/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-config/f0aaeb9183bca4511d21c13a39052e24f3774645
 pushd clr-build
 %make_install
 popd
@@ -140,6 +139,8 @@ popd
 /usr/share/applications/lxqt-config-locale.desktop
 /usr/share/applications/lxqt-config-monitor.desktop
 /usr/share/applications/lxqt-config.desktop
+/usr/share/desktop-directories/lxqt-settings-lxqt.directory
+/usr/share/desktop-directories/lxqt-settings-system.directory
 /usr/share/icons/hicolor/48x48/apps/brightnesssettings.svg
 /usr/share/lxqt/icons/monitor.svg
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_ar.qm
@@ -161,6 +162,7 @@ popd
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_fr.qm
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_gl.qm
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_he.qm
+/usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_hr.qm
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_hu.qm
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_ia.qm
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_id.qm
@@ -201,6 +203,7 @@ popd
 /usr/share/lxqt/translations/lxqt-config-brightness/lxqt-config-brightness_fr.qm
 /usr/share/lxqt/translations/lxqt-config-brightness/lxqt-config-brightness_gl.qm
 /usr/share/lxqt/translations/lxqt-config-brightness/lxqt-config-brightness_he.qm
+/usr/share/lxqt/translations/lxqt-config-brightness/lxqt-config-brightness_hr.qm
 /usr/share/lxqt/translations/lxqt-config-brightness/lxqt-config-brightness_hu.qm
 /usr/share/lxqt/translations/lxqt-config-brightness/lxqt-config-brightness_id.qm
 /usr/share/lxqt/translations/lxqt-config-brightness/lxqt-config-brightness_it.qm
@@ -235,6 +238,7 @@ popd
 /usr/share/lxqt/translations/lxqt-config-cursor/lxqt-config-cursor_fr.qm
 /usr/share/lxqt/translations/lxqt-config-cursor/lxqt-config-cursor_gl.qm
 /usr/share/lxqt/translations/lxqt-config-cursor/lxqt-config-cursor_he.qm
+/usr/share/lxqt/translations/lxqt-config-cursor/lxqt-config-cursor_hr.qm
 /usr/share/lxqt/translations/lxqt-config-cursor/lxqt-config-cursor_hu.qm
 /usr/share/lxqt/translations/lxqt-config-cursor/lxqt-config-cursor_id.qm
 /usr/share/lxqt/translations/lxqt-config-cursor/lxqt-config-cursor_it.qm
@@ -270,6 +274,7 @@ popd
 /usr/share/lxqt/translations/lxqt-config-file-associations/lxqt-config-file-associations_fr.qm
 /usr/share/lxqt/translations/lxqt-config-file-associations/lxqt-config-file-associations_gl.qm
 /usr/share/lxqt/translations/lxqt-config-file-associations/lxqt-config-file-associations_he.qm
+/usr/share/lxqt/translations/lxqt-config-file-associations/lxqt-config-file-associations_hr.qm
 /usr/share/lxqt/translations/lxqt-config-file-associations/lxqt-config-file-associations_hu.qm
 /usr/share/lxqt/translations/lxqt-config-file-associations/lxqt-config-file-associations_id.qm
 /usr/share/lxqt/translations/lxqt-config-file-associations/lxqt-config-file-associations_it.qm
@@ -339,6 +344,7 @@ popd
 /usr/share/lxqt/translations/lxqt-config-locale/lxqt-config-locale_fr.qm
 /usr/share/lxqt/translations/lxqt-config-locale/lxqt-config-locale_gl.qm
 /usr/share/lxqt/translations/lxqt-config-locale/lxqt-config-locale_he.qm
+/usr/share/lxqt/translations/lxqt-config-locale/lxqt-config-locale_hr.qm
 /usr/share/lxqt/translations/lxqt-config-locale/lxqt-config-locale_hu.qm
 /usr/share/lxqt/translations/lxqt-config-locale/lxqt-config-locale_id.qm
 /usr/share/lxqt/translations/lxqt-config-locale/lxqt-config-locale_it.qm
@@ -370,6 +376,7 @@ popd
 /usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_fr.qm
 /usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_gl.qm
 /usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_he.qm
+/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_hr.qm
 /usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_hu.qm
 /usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_id.qm
 /usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_it.qm
@@ -405,6 +412,7 @@ popd
 /usr/share/lxqt/translations/lxqt-config/lxqt-config_fr.qm
 /usr/share/lxqt/translations/lxqt-config/lxqt-config_gl.qm
 /usr/share/lxqt/translations/lxqt-config/lxqt-config_he.qm
+/usr/share/lxqt/translations/lxqt-config/lxqt-config_hr.qm
 /usr/share/lxqt/translations/lxqt-config/lxqt-config_hu.qm
 /usr/share/lxqt/translations/lxqt-config/lxqt-config_id.qm
 /usr/share/lxqt/translations/lxqt-config/lxqt-config_it.qm

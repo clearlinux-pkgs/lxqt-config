@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBE793007AD22DF7E (tsujan2000@gmail.com)
 #
 Name     : lxqt-config
-Version  : 0.16.0
-Release  : 6
-URL      : https://github.com/lxqt/lxqt-config/releases/download/0.16.0/lxqt-config-0.16.0.tar.xz
-Source0  : https://github.com/lxqt/lxqt-config/releases/download/0.16.0/lxqt-config-0.16.0.tar.xz
-Source1  : https://github.com/lxqt/lxqt-config/releases/download/0.16.0/lxqt-config-0.16.0.tar.xz.asc
+Version  : 0.16.1
+Release  : 7
+URL      : https://github.com/lxqt/lxqt-config/releases/download/0.16.1/lxqt-config-0.16.1.tar.xz
+Source0  : https://github.com/lxqt/lxqt-config/releases/download/0.16.1/lxqt-config-0.16.1.tar.xz
+Source1  : https://github.com/lxqt/lxqt-config/releases/download/0.16.1/lxqt-config-0.16.1.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -23,7 +23,6 @@ BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules pkgconfig(xcb) xcb-util-cursor-dev xcb-util-image-dev xcb-util-keysyms-dev xcb-util-renderutil-dev xcb-util-wm-dev xcb-util-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
 BuildRequires : libkscreen-dev
-BuildRequires : liblxqt-data
 BuildRequires : liblxqt-dev
 BuildRequires : lxqt-build-tools
 BuildRequires : pkg-config
@@ -87,15 +86,15 @@ man components for the lxqt-config package.
 
 
 %prep
-%setup -q -n lxqt-config-0.16.0
-cd %{_builddir}/lxqt-config-0.16.0
+%setup -q -n lxqt-config-0.16.1
+cd %{_builddir}/lxqt-config-0.16.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604541266
+export SOURCE_DATE_EPOCH=1605462636
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -108,11 +107,11 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1604541266
+export SOURCE_DATE_EPOCH=1605462636
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lxqt-config
-cp %{_builddir}/lxqt-config-0.16.0/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-config/7fab4cd4eb7f499d60fe183607f046484acd6e2d
-cp %{_builddir}/lxqt-config-0.16.0/lxqt-config-monitor/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-config/f0aaeb9183bca4511d21c13a39052e24f3774645
+cp %{_builddir}/lxqt-config-0.16.1/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-config/7fab4cd4eb7f499d60fe183607f046484acd6e2d
+cp %{_builddir}/lxqt-config-0.16.1/lxqt-config-monitor/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-config/f0aaeb9183bca4511d21c13a39052e24f3774645
 pushd clr-build
 %make_install
 popd

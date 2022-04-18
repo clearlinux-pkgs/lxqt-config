@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBE793007AD22DF7E (tsujan2000@gmail.com)
 #
 Name     : lxqt-config
-Version  : 1.0.0
-Release  : 13
-URL      : https://github.com/lxqt/lxqt-config/releases/download/1.0.0/lxqt-config-1.0.0.tar.xz
-Source0  : https://github.com/lxqt/lxqt-config/releases/download/1.0.0/lxqt-config-1.0.0.tar.xz
-Source1  : https://github.com/lxqt/lxqt-config/releases/download/1.0.0/lxqt-config-1.0.0.tar.xz.asc
+Version  : 1.1.0
+Release  : 14
+URL      : https://github.com/lxqt/lxqt-config/releases/download/1.1.0/lxqt-config-1.1.0.tar.xz
+Source0  : https://github.com/lxqt/lxqt-config/releases/download/1.1.0/lxqt-config-1.1.0.tar.xz
+Source1  : https://github.com/lxqt/lxqt-config/releases/download/1.1.0/lxqt-config-1.1.0.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -86,15 +86,15 @@ man components for the lxqt-config package.
 
 
 %prep
-%setup -q -n lxqt-config-1.0.0
-cd %{_builddir}/lxqt-config-1.0.0
+%setup -q -n lxqt-config-1.1.0
+cd %{_builddir}/lxqt-config-1.1.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1636133867
+export SOURCE_DATE_EPOCH=1650311484
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -107,11 +107,11 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1636133867
+export SOURCE_DATE_EPOCH=1650311484
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lxqt-config
-cp %{_builddir}/lxqt-config-1.0.0/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-config/7fab4cd4eb7f499d60fe183607f046484acd6e2d
-cp %{_builddir}/lxqt-config-1.0.0/lxqt-config-monitor/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-config/f0aaeb9183bca4511d21c13a39052e24f3774645
+cp %{_builddir}/lxqt-config-1.1.0/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-config/7fab4cd4eb7f499d60fe183607f046484acd6e2d
+cp %{_builddir}/lxqt-config-1.1.0/lxqt-config-monitor/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-config/f0aaeb9183bca4511d21c13a39052e24f3774645
 pushd clr-build
 %make_install
 popd
@@ -164,6 +164,7 @@ popd
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_fr.qm
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_gl.qm
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_he.qm
+/usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_hi.qm
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_hr.qm
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_hu.qm
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_ia.qm
@@ -174,6 +175,7 @@ popd
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_lt.qm
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_nb_NO.qm
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_nl.qm
+/usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_oc.qm
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_pl.qm
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_pt.qm
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_pt_BR.qm
@@ -247,6 +249,7 @@ popd
 /usr/share/lxqt/translations/lxqt-config-cursor/lxqt-config-cursor_fr.qm
 /usr/share/lxqt/translations/lxqt-config-cursor/lxqt-config-cursor_gl.qm
 /usr/share/lxqt/translations/lxqt-config-cursor/lxqt-config-cursor_he.qm
+/usr/share/lxqt/translations/lxqt-config-cursor/lxqt-config-cursor_hi.qm
 /usr/share/lxqt/translations/lxqt-config-cursor/lxqt-config-cursor_hr.qm
 /usr/share/lxqt/translations/lxqt-config-cursor/lxqt-config-cursor_hu.qm
 /usr/share/lxqt/translations/lxqt-config-cursor/lxqt-config-cursor_id.qm
@@ -365,6 +368,7 @@ popd
 /usr/share/lxqt/translations/lxqt-config-locale/lxqt-config-locale_fr.qm
 /usr/share/lxqt/translations/lxqt-config-locale/lxqt-config-locale_gl.qm
 /usr/share/lxqt/translations/lxqt-config-locale/lxqt-config-locale_he.qm
+/usr/share/lxqt/translations/lxqt-config-locale/lxqt-config-locale_hi.qm
 /usr/share/lxqt/translations/lxqt-config-locale/lxqt-config-locale_hr.qm
 /usr/share/lxqt/translations/lxqt-config-locale/lxqt-config-locale_hu.qm
 /usr/share/lxqt/translations/lxqt-config-locale/lxqt-config-locale_id.qm

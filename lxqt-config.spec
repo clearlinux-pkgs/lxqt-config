@@ -6,7 +6,7 @@
 #
 Name     : lxqt-config
 Version  : 1.2.0
-Release  : 15
+Release  : 16
 URL      : https://github.com/lxqt/lxqt-config/releases/download/1.2.0/lxqt-config-1.2.0.tar.xz
 Source0  : https://github.com/lxqt/lxqt-config/releases/download/1.2.0/lxqt-config-1.2.0.tar.xz
 Source1  : https://github.com/lxqt/lxqt-config/releases/download/1.2.0/lxqt-config-1.2.0.tar.xz.asc

@@ -6,7 +6,7 @@
 #
 Name     : lxqt-config
 Version  : 1.2.0
-Release  : 16
+Release  : 17
 URL      : https://github.com/lxqt/lxqt-config/releases/download/1.2.0/lxqt-config-1.2.0.tar.xz
 Source0  : https://github.com/lxqt/lxqt-config/releases/download/1.2.0/lxqt-config-1.2.0.tar.xz
 Source1  : https://github.com/lxqt/lxqt-config/releases/download/1.2.0/lxqt-config-1.2.0.tar.xz.asc
@@ -34,6 +34,9 @@ BuildRequires : qtsvg-dev
 BuildRequires : qttools-dev
 BuildRequires : qtx11extras-dev
 BuildRequires : zlib-dev
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 # lxqt-config
@@ -94,20 +97,20 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1667855557
+export SOURCE_DATE_EPOCH=1676929620
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$FFLAGS -fno-lto "
-export FFLAGS="$FFLAGS -fno-lto "
-export CXXFLAGS="$CXXFLAGS -fno-lto "
-%cmake ..
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+%cmake .. -DWITH_MONITOR=OFF
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1667855557
+export SOURCE_DATE_EPOCH=1676929620
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lxqt-config
 cp %{_builddir}/lxqt-config-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-config/7fab4cd4eb7f499d60fe183607f046484acd6e2d || :
@@ -127,7 +130,6 @@ popd
 /usr/bin/lxqt-config-file-associations
 /usr/bin/lxqt-config-input
 /usr/bin/lxqt-config-locale
-/usr/bin/lxqt-config-monitor
 
 %files data
 %defattr(-,root,root,-)
@@ -136,13 +138,11 @@ popd
 /usr/share/applications/lxqt-config-file-associations.desktop
 /usr/share/applications/lxqt-config-input.desktop
 /usr/share/applications/lxqt-config-locale.desktop
-/usr/share/applications/lxqt-config-monitor.desktop
 /usr/share/applications/lxqt-config.desktop
 /usr/share/desktop-directories/lxqt-settings-lxqt.directory
 /usr/share/desktop-directories/lxqt-settings-other.directory
 /usr/share/desktop-directories/lxqt-settings-system.directory
 /usr/share/icons/hicolor/48x48/apps/brightnesssettings.svg
-/usr/share/lxqt/icons/monitor.svg
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_ar.qm
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_arn.qm
 /usr/share/lxqt/translations/lxqt-config-appearance/lxqt-config-appearance_ast.qm
@@ -393,43 +393,6 @@ popd
 /usr/share/lxqt/translations/lxqt-config-locale/lxqt-config-locale_tr.qm
 /usr/share/lxqt/translations/lxqt-config-locale/lxqt-config-locale_uk.qm
 /usr/share/lxqt/translations/lxqt-config-locale/lxqt-config-locale_zh_CN.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_ar.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_arn.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_ast.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_bg.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_ca.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_cs.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_cy.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_da.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_de.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_el.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_en_GB.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_es.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_et.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_fr.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_gl.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_he.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_hr.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_hu.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_id.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_it.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_ja.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_ko.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_lt.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_nb_NO.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_nl.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_pl.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_pt.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_pt_BR.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_ru.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_si.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_sk_SK.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_sl.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_sv.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_tr.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_uk.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_zh_CN.qm
-/usr/share/lxqt/translations/lxqt-config-monitor/lxqt-config-monitor_zh_TW.qm
 /usr/share/lxqt/translations/lxqt-config/lxqt-config_ar.qm
 /usr/share/lxqt/translations/lxqt-config/lxqt-config_arn.qm
 /usr/share/lxqt/translations/lxqt-config/lxqt-config_ast.qm
